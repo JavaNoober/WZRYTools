@@ -473,7 +473,7 @@ public class WeChatAccessibilityBaseUtil {
     }
 
     public static boolean move(AccessibilityService service, Point startPoint, Point endPoint, IMoveSuccessCallBack callBack) {
-        return move(service, startPoint, endPoint, 500L, callBack);
+        return move(service, startPoint, endPoint, 600L, callBack);
     }
 
     public static boolean move(AccessibilityService service, Point startPoint, Point endPoint, long time, IMoveSuccessCallBack callBack) {

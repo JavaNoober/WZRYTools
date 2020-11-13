@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.lzf.easyfloat.EasyFloat
 import com.lzf.easyfloat.anim.AppFloatDefaultAnimator
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 // 设置浮窗xml布局文件，并可设置详细信息
                 .setLayout(R.layout.float_app, OnInvokeView {
                     var lastClickTime: Long = 0L
-                    it.setOnClickListener {
+                    it.findViewById<TextView>(R.id.tv_mingdao).setOnClickListener {
                         val curClickTime = System.currentTimeMillis()
                         if ((curClickTime - lastClickTime) > 500) {
                             lastClickTime = curClickTime
@@ -38,7 +39,19 @@ class MainActivity : AppCompatActivity() {
                             )
                             AutoEvent.autoChange(AssistAccessService.getInstance())
                         }
+                    }
 
+                    it.findViewById<TextView>(R.id.tv_huiyue).setOnClickListener {
+                        val curClickTime = System.currentTimeMillis()
+                        if ((curClickTime - lastClickTime) > 500) {
+                            lastClickTime = curClickTime
+                            Log.e("MainActivity", "isClick")
+                            AutoEvent.setEquipmentPosition(
+                                    etReX.text.toString().toInt(),
+                                    etReY.text.toString().toInt()
+                            )
+                            AutoEvent.autoChangeHUIYUE(AssistAccessService.getInstance())
+                        }
                     }
                 })
                 // 设置浮窗显示类型，默认只在当前Activity显示，可选一直显示、仅前台显示、仅后台显示
